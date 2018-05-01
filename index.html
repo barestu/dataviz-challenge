@@ -4,9 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+  <!-- Compiled and minified JavaScript -->
   <title>Data Visualization</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <style>
+    .arc text {
+      font: 12px;
+      text-anchor: middle;
+    }
+
+    .arc path {
+      stroke: white;
+    }
     .chart-container {
       display: flex;
       align-items: flex-end;
@@ -20,8 +32,14 @@
   </style>
 </head>
 <body>
-  <h1>1st Gen. Pokemon Type Chart</h1>
-  <div class="chart-container">
+  <div class="container">
+    <div class="row">
+      <div class="col s6 offset-s3">
+        <h3>1st Gen. Pokemon Type Chart</h3>
+        <div class="chart-container">
+        </div>
+      </div>
+    </div>
   </div>
   <script src="./script.js"></script>
 </body>

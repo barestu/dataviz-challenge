@@ -5,21 +5,21 @@ let margin = { top: 20, right: 20, bottom: 20, left: 20 },
 
 let color = d3.scaleOrdinal()
   .range([
-    '#90C695',
-    '#EC644B',
-    '#81CFE0',
-    '#90C695',
-    '#E4F1FE',
-    '#674172',
-    '#F7CA18',
-    '#F5D76E',
-    '#F5D76E',
-    '#EC644B',
-    '#EC644B',
-    '#F5D76E',
-    '#674172',
-    '#90C695',
-    '#EC644B'
+    '#90C695', // grass
+    '#EC644B', // fire
+    '#81CFE0', // water
+    '#90C695', // bug
+    '#E4F1FE', // normal
+    '#674172', // poison
+    '#F7CA18', // electric
+    '#F5D76E', // ground
+    '#F5D76E', // fairy
+    '#EC644B', // fighting
+    '#EC644B', // psychic
+    '#F5D76E', // rock
+    '#674172', // ghost
+    '#90C695', // ice
+    '#EC644B' // dragon
   ])
 
 let arc = d3.arc()
@@ -27,8 +27,8 @@ let arc = d3.arc()
   .innerRadius(0)
 
 let label = d3.arc()
-  .outerRadius(radius - 50)
-  .innerRadius(radius - 50)
+  .outerRadius(radius - 20)
+  .innerRadius(radius - 20)
 
 let pie = d3.pie()
   .sort(null)
@@ -71,7 +71,6 @@ function fetchPokedex () {
 }
 
 function createChart(data) {
-  console.log(data)
   let g = svg.selectAll('.arc')
     .data(pie(data))
     .enter()
@@ -83,8 +82,16 @@ function createChart(data) {
     .style('fill', function (d) {
       return color(d.data.name)
     })
+    .transition()
+    .ease(d3.easeLinear)
+    .duration(1500)
+    .attrTween('d', pieTween)
 
   g.append('text')
+    .transition()
+    .ease(d3.easeLinear)
+    .duration(1500)
+    .attrTween('d', pieTween)
     .attr('transform', function (d) {
       return `translate(${label.centroid(d)})`
     })
@@ -92,6 +99,12 @@ function createChart(data) {
     .text(function (d) {
       return d.data.name
     })
+}
+
+function pieTween(b) {
+  b.innerRadius = 0
+  let i = d3.interpolate({ startAngle: 0, endAngle: 0 }, b)
+  return function (t) { return arc(i(t)) }
 }
 
 fetchPokedex()
