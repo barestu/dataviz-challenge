@@ -13,10 +13,10 @@ let color = d3.scaleOrdinal()
     '#674172', // poison
     '#F7CA18', // electric
     '#F5D76E', // ground
-    '#F5D76E', // fairy
-    '#EC644B', // fighting
+    '#F7f1e3', // fairy
+    '#F8EFBA', // fighting
     '#EC644B', // psychic
-    '#F5D76E', // rock
+    '#d1ccc0', // rock
     '#674172', // ghost
     '#90C695', // ice
     '#EC644B' // dragon
@@ -27,8 +27,8 @@ let arc = d3.arc()
   .innerRadius(0)
 
 let label = d3.arc()
-  .outerRadius(radius - 20)
-  .innerRadius(radius - 20)
+  .outerRadius(radius - 30)
+  .innerRadius(radius - 30)
 
 let pie = d3.pie()
   .sort(null)
